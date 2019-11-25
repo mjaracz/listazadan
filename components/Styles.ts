@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 
-
 const styles = StyleSheet.create({
 	navBar: {
 		backgroundColor: '#0f91ff'

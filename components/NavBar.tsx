@@ -1,14 +1,14 @@
 import React from 'react';
 import Home from './Home/Home';
 import Tasks from './Tasks/Tasks';
-import styles from './Styles';
+import Comments from './Comments/Comments';
 
+import styles from './Styles';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {
 	Feather,
 	FontAwesome
 } from '@expo/vector-icons';
-import Comments from './Comments/Comments';
 
 const NavBar = createMaterialBottomTabNavigator(
 	{

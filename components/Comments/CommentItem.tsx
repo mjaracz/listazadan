@@ -2,8 +2,14 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import styles from '../Tasks/Style';
 
+interface Props {
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+}
 
-function CommentItem(props) {
+function CommentItem(props: Props) {
   return(
     <View style={styles.list__item}>
       <Text><Text style={styles.item__bold}>Nr </Text>{props.id}</Text>

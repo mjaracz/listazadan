@@ -1,9 +1,7 @@
-export const getTasks = (url: string) => ({
+export const getTasks = () => ({
   type: 'GET_TASKS',
-  url: url
 });
 
-export const getComments = (url: string) => ({
+export const getComments = () => ({
   type: 'GET_COMMENTS',
-  url: url
 });
