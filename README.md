@@ -20,7 +20,7 @@ Furthermore I recommend to have working mobile devices with android or IOS to st
 In device you should have install expo app.
 </p>
 <p>
-If you don't have it, I recommend to follow guide step by step on the official android studio website to configure android emulator on your personal computer.
+If you don't have mobile device, I recommend to follow guide step by step on the official android studio website to configure android emulator on your personal computer.
 </p>
 
 <h1>Launching the project</h1>
