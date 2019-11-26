@@ -6,18 +6,17 @@ import {
 	ActivityIndicator
 } from 'react-native';
 
-import {ignoreActions} from 'redux-ignore';
+
 import {connect} from 'react-redux';
 import {comment} from '../../redux/types';
-import {getComments} from '../../redux/actions/fetchAction';
-import {AbortController} from 'abort-controller/dist/abort-controller';
-import fetchReducer from '../../redux/reducers/fetchReducer';
+import {clearComments, getComments} from '../../redux/actions/fetchAction';
 
 import styles from '../Tasks/Style';
 import CommentItem from './CommentItem';
 
 interface Props {
 	reduxGetComments(): Dispatch<() => {type: string}>;
+	reduxClearComments(): Dispatch<() => {type: string}>;
 	loading: boolean;
 	comments: comment[];
 }
@@ -26,11 +25,8 @@ class Comments extends PureComponent<Props> {
 	componentDidMount(): void {
 		this.props.reduxGetComments();
 	}
-	
 	componentWillUnmount(): void {
-		const abortController = new AbortController();
-		abortController.abort();
-		ignoreActions(fetchReducer, ['getComments'])
+		this.props.reduxClearComments()
 	}
 	render(): ReactElement {
 		return (
@@ -63,7 +59,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-	reduxGetComments: () => dispatch(getComments())
+	reduxGetComments: () => dispatch(getComments()),
+	reduxClearComments: () => dispatch(clearComments())
 });
 
 

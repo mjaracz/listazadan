@@ -6,18 +6,16 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import {getTasks} from '../../redux/actions/fetchAction';
+import {clearTasks, getTasks} from '../../redux/actions/fetchAction';
 import {connect} from 'react-redux';
 import {task} from '../../redux/types';
-import {ignoreActions} from 'redux-ignore';
-import {AbortController} from 'abort-controller/dist/abort-controller';
-import fetchReducer from '../../redux/reducers/fetchReducer';
 
 import styles from '../Tasks/Style';
 import TaskItem from './TaskItem';
 
 interface Props {
   reduxGetTasks(): Dispatch<() => {type: string}>;
+  reduxClearTasks(): Dispatch<() => {type: string}>
   loading: boolean;
   tasks: task[];
 }
@@ -28,9 +26,7 @@ class Comments extends PureComponent<Props> {
   }
   
   componentWillUnmount(): void {
-    const abortController = new AbortController();
-    abortController.abort();
-    ignoreActions(fetchReducer, ['getTasks'])
+    this.props.reduxClearTasks()
   }
   render(): ReactElement {
     return (
@@ -41,7 +37,7 @@ class Comments extends PureComponent<Props> {
             : <SectionList
               sections={[{title: 'Tasks List', data: this.props.tasks}]}
               keyExtractor={(item, index) => `${index}`}
-              renderItem={ ({item}) => <TaskItem id={item.id} title={item.title} completed={item.completed}/>}
+              renderItem={ ({ item }) => <TaskItem id={item.id} title={item.title} completed={item.completed}/>}
               renderSectionHeader={({section}) => (
                 <View style={styles.list__section}>
                   <Text style={styles.section__text}>{section.title}</Text>
@@ -63,7 +59,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  reduxGetTasks: () => dispatch(getTasks())
+  reduxGetTasks: () => dispatch(getTasks()),
+  reduxClearTasks: () => dispatch(clearTasks())
 });
 
 

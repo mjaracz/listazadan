@@ -44,6 +44,18 @@ const fetchReducer = (state: Store = initialState, action) => {
         error: action.payload
       })
     }
+    case 'CLEAR_TASKS': {
+      return({
+        ...state,
+        tasks: []
+      })
+    }
+    case 'CLEAR_COMMENTS': {
+      return({
+        ...state,
+        comments: []
+      })
+    }
     default: {
       return state
     }
