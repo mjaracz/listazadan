@@ -25,5 +25,7 @@ If you don't have mobile device, I recommend to follow guide step by step on the
 
 <h1>Launching the project</h1>
 <p>To start project just install deps, and typing command below in root directory. Scan QR code in your mobile device from computer terminal.</p>
+
 ```npm install```
+
 ```npm start```
